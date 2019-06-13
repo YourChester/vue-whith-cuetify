@@ -7,6 +7,21 @@
         <span>Ninja</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
+
+      <!-- Drop down menu -->
+      <v-menu offset-y>
+        <v-btn flat slot="activator" color="grey">
+          <v-icon left>expand_more</v-icon>
+          <span>menu</span>
+        </v-btn>
+        <v-list>
+          <v-list-tile v-for="link in links" :key="link.text" route :to="link.route">
+            <v-list-tile-title>{{link.text}}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
+      <!-- Drop down menu -->
+
       <v-btn flat color="grey">
         <span>Sign Out</span>
         <v-icon right>exit_to_app</v-icon>
@@ -22,6 +37,9 @@
           <p class="white--text subheading mt-1">
             The Net Ninja
           </p>
+        </v-flex>
+        <v-flex class="mt-4 mb-3">
+          <Popup></Popup>
         </v-flex>
       </v-layout>
       <v-list>
@@ -39,7 +57,11 @@
 </template>
 
 <script>
+import Popup from './Popup'
 export default {
+  components: {
+    Popup
+  },
   data () {
     return {
       drawer: false,
